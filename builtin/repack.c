@@ -780,7 +780,7 @@ int cmd_repack(int argc, const char **argv, const char *prefix)
 
 	if (keep_unreachable &&
 	    (unpack_unreachable || (pack_everything & LOOSEN_UNREACHABLE)))
-		die(_("--keep-unreachable and -A are incompatible"));
+		die(_("options '%s' and '%s' cannot be used together"), "--keep-unreachable", "-A");
 	if (pack_everything & PACK_CRUFT && delete_redundant) {
 		if (unpack_unreachable || (pack_everything & LOOSEN_UNREACHABLE))
 			die(_("--cruft and -A are incompatible"));
@@ -819,7 +819,7 @@ int cmd_repack(int argc, const char **argv, const char *prefix)
 
 	if (geometric_factor) {
 		if (pack_everything)
-			die(_("--geometric is incompatible with -A, -a"));
+			die(_("options '%s' and '%s' cannot be used together"),"--geometric", "-A/-a");
 		init_pack_geometry(&geometry);
 		split_pack_geometry(geometry, geometric_factor);
 	}
